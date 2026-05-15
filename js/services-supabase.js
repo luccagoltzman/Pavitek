@@ -41,7 +41,7 @@
 
   function buildCarousel(service, images, baseUrl) {
     var wrap = document.createElement("div");
-    wrap.className = "carousel";
+    wrap.className = "carousel carousel--depth";
     wrap.setAttribute("data-carousel", "");
     wrap.setAttribute("role", "region");
     wrap.setAttribute("aria-roledescription", "Carrossel");
@@ -49,9 +49,6 @@
       "aria-label",
       "Fotos do serviço " + service.title,
     );
-    wrap.style.setProperty("--carousel-n", String(Math.max(1, images.length)));
-    wrap.style.setProperty("--carousel-i", "0");
-
     var chrome = document.createElement("div");
     chrome.className = "carousel__chrome";
 

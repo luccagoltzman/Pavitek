@@ -271,6 +271,8 @@ a {
 /* Hero */
 .hero {
   --hero-scrim-opacity: 1;
+  /* 0–1: definido por JS ao rolar para fora do hero (parallax) */
+  --hero-parallax: 0;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -296,6 +298,50 @@ a {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+
+/* Parallax ao sair do hero: mídia “fica para trás” + leve zoom (só sem reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero.hero--parallax .hero__media {
+    inset: -8% -4% -12% -4%;
+    height: auto;
+    min-height: 112%;
+    top: -6%;
+    will-change: transform;
+    transform: translate3d(
+        0,
+        calc(var(--hero-parallax) * 22%),
+        0
+      )
+      scale(calc(1 + var(--hero-parallax) * 0.07));
+    transform-origin: 50% 35%;
+  }
+
+  .hero.hero--parallax .hero__stack {
+    will-change: transform, opacity;
+    transform: translate3d(
+      0,
+      calc(var(--hero-parallax) * -6%),
+      0
+    );
+    opacity: calc(1 - var(--hero-parallax) * 0.4);
+  }
+
+  .hero.hero--parallax .scroll-cue {
+    will-change: transform, opacity;
+    transform: translate3d(
+      0,
+      calc(var(--hero-parallax) * 1.25rem),
+      0
+    );
+    opacity: clamp(0, calc(1 - var(--hero-parallax) * 1.25), 1);
+  }
+
+  .hero.hero--parallax .hero__scrim {
+    opacity: calc(
+      var(--hero-scrim-opacity, 1) * (1 + var(--hero-parallax) * 0.12)
+    );
+  }
 }
 
 .hero__bg-image {
@@ -563,10 +609,12 @@ a {
   color: var(--text-muted);
 }
 
-/* Carrossel: equilíbrio entre leitura confortável e página com muitos serviços */
+/* Carrossel: largura limitada e bloco centralizado na secção do serviço */
 .service > .carousel {
   max-width: min(100%, 38rem);
   margin-top: 1rem;
+  margin-inline: auto;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -582,12 +630,13 @@ a {
 }
 
 .carousel {
-  --carousel-n: 1;
-  --carousel-i: 0;
+  --carousel-depth-dur: 0.58s;
+  --carousel-depth-ease: cubic-bezier(0.33, 1, 0.32, 1);
 }
 
 .carousel__chrome {
   display: flex;
+  flex-direction: row;
   align-items: stretch;
   gap: 0.5rem;
 }
@@ -595,10 +644,12 @@ a {
 .carousel__viewport {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
-  border-radius: 0.625rem;
+  border-radius: 0.75rem;
   outline: none;
-  /* Altura: cresce com o ecrã (svh) mas com tecto para não monopolizar a página */
+  perspective: 900px;
+  perspective-origin: 50% 50%;
   height: clamp(11.5rem, 30svh, 17rem);
 }
 
@@ -619,30 +670,32 @@ a {
 }
 
 .carousel__track {
-  display: flex;
-  width: calc(var(--carousel-n, 1) * 100%);
+  position: relative;
+  width: 100%;
   height: 100%;
-  align-items: stretch;
-  transform: translateX(
-    calc(-100% * var(--carousel-i, 0) / var(--carousel-n, 1))
-  );
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
+  transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .carousel__track {
-    transition: none;
-  }
+.carousel__track--instant .carousel__slide {
+  transition: none !important;
 }
 
 .carousel__slide {
-  flex: 0 0 calc(100% / var(--carousel-n, 1));
-  max-width: calc(100% / var(--carousel-n, 1));
+  position: absolute;
+  inset: 0;
   margin: 0;
   height: 100%;
+  max-width: none;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   min-height: 0;
+  transition:
+    transform var(--carousel-depth-dur) var(--carousel-depth-ease),
+    opacity calc(var(--carousel-depth-dur) * 0.92) ease,
+    filter calc(var(--carousel-depth-dur) * 0.92) ease;
 }
 
 .carousel__slide.is-missing {
@@ -656,19 +709,36 @@ a {
   min-height: 0;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 0.625rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.75);
   cursor: zoom-in;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.2s ease,
+    box-shadow var(--carousel-depth-dur) var(--carousel-depth-ease);
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.45);
+}
+
+.carousel__slide--active .carousel__open {
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow:
+    0 28px 56px -20px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(245, 158, 11, 0.22),
+    0 0 40px -8px rgba(245, 158, 11, 0.12);
 }
 
 .carousel__open:hover,
 .carousel__open:focus-visible {
-  border-color: rgba(245, 158, 11, 0.45);
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
   outline: none;
+}
+
+.carousel__slide--active .carousel__open:hover,
+.carousel__slide--active .carousel__open:focus-visible {
+  box-shadow:
+    0 28px 56px -20px rgba(0, 0, 0, 0.72),
+    0 0 0 2px rgba(245, 158, 11, 0.35);
 }
 
 .carousel__open img {
@@ -689,13 +759,13 @@ a {
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 0.5rem;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.88);
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   line-height: 1;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
 .carousel__arrow:hover:not(:disabled),
@@ -718,8 +788,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
   min-height: 1.25rem;
 }
 
@@ -728,25 +798,37 @@ a {
 }
 
 .carousel__dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.45rem;
+  height: 0.45rem;
   padding: 0;
   border: none;
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.45);
+  background: rgba(148, 163, 184, 0.4);
   cursor: pointer;
-  transition: transform 0.15s, background 0.15s;
+  transition: transform 0.2s ease, background 0.2s ease, width 0.25s ease;
 }
 
 .carousel__dot:hover,
 .carousel__dot:focus-visible {
-  background: rgba(251, 191, 36, 0.85);
+  background: rgba(251, 191, 36, 0.75);
   outline: none;
 }
 
 .carousel__dot.is-active {
+  width: 1.35rem;
+  border-radius: 999px;
   background: var(--accent);
-  transform: scale(1.25);
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    --carousel-depth-dur: 0.01ms;
+  }
+
+  .carousel__dot {
+    transition: none;
+  }
 }
 
 .service__path-hint {
