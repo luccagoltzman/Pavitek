@@ -7,9 +7,9 @@ const f = path.join(__dirname, "..", "index.html");
 let s = fs.readFileSync(f, "utf8").replace(/\r\n/g, "\n");
 
 const anchor =
-  '            <p class="section__subtitle">\n              Atuação em pavimentação';
+  '            <p class="section__subtitle">\n              Os serviços abaixo são geridos no painel administrativo';
 const endMarker =
-  '          <a\n            class="scroll-cue"\n            href="#sobre"';
+  '        </div>\n      </section>\n\n      <section id="sobre"';
 
 const start = s.indexOf(anchor);
 const end = s.indexOf(endMarker, start);
@@ -19,14 +19,15 @@ if (start < 0 || end < 0) {
 }
 
 const ins = `            <p class="section__subtitle">
-              Os serviços abaixo são geridos no painel administrativo. As imagens
-              são servidas pelo Supabase Storage.
+              Os serviços abaixo são geridos no painel administrativo. As fotos são
+              carregadas a partir do seu dispositivo e armazenadas no Supabase Storage.
             </p>
             <nav
               class="services__jump"
               id="services-jump"
               aria-label="Atalhos para serviços"
             ></nav>
+          </header>
 
           <div id="servicos-root" class="services">
             <p
@@ -36,7 +37,6 @@ const ins = `            <p class="section__subtitle">
               Carregando serviços…
             </p>
           </div>
-
 `;
 
 s = s.slice(0, start) + ins + s.slice(end);

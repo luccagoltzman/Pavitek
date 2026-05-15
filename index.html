@@ -88,16 +88,6 @@
             </div>
           </div>
         </div>
-        <a
-          class="scroll-cue"
-          href="#servicos"
-          aria-label="Rolar até a seção Serviços"
-        >
-          <span class="visually-hidden">Há mais conteúdo ao rolar a página.</span>
-          <span class="scroll-cue__rail" aria-hidden="true"></span>
-          <span class="scroll-cue__label">Continuar</span>
-          <span class="scroll-cue__arrow" aria-hidden="true"></span>
-        </a>
       </section>
 
       <section id="servicos" class="section section--border">
@@ -133,95 +123,164 @@
               Carregando serviços…
             </p>
           </div>
-
-          <a
-            class="scroll-cue"
-            href="#sobre"
-            aria-label="Rolar até a seção Sobre"
-          >
-            <span class="visually-hidden">Há mais conteúdo ao rolar a página.</span>
-            <span class="scroll-cue__rail" aria-hidden="true"></span>
-            <span class="scroll-cue__label">Continuar</span>
-            <span class="scroll-cue__arrow" aria-hidden="true"></span>
-          </a>
         </div>
       </section>
 
-      <section id="sobre" class="section section--border">
-        <div class="container">
-          <div class="about">
-            <div class="about__text">
-              <h2 class="section__title">Sobre a Pavitek</h2>
-              <p class="about__lead">
+      <section id="sobre" class="section section--border section--about">
+        <div class="container about-wrap">
+          <header class="about-head">
+            <p class="about-head__eyebrow">Quem somos</p>
+            <h2 class="section__title">Sobre a Pavitek</h2>
+            <div class="about-head__copy">
+              <p class="about-head__lead">
                 Atuamos na construção e conservação de vias e ferrovias, com
                 equipes preparadas para desafios de logística, geotecnia e
-                integração com o meio ambiente. Nosso objetivo é entregar obras
-                seguras, duráveis e alinhadas às especificações do projeto e às
-                normas aplicáveis.
+                integração com o meio ambiente.
+              </p>
+              <p class="about-head__sub">
+                Nosso objetivo é entregar obras seguras, duráveis e alinhadas às
+                especificações do projeto e às normas aplicáveis — com
+                transparência na execução e proximidade com clientes e
+                projetistas.
               </p>
             </div>
-            <dl class="about__grid">
+          </header>
+
+          <div class="about-board">
+            <dl class="about__grid" aria-label="Resumo da empresa">
               <div class="about__item">
-                <dt class="about__term">Foco</dt>
-                <dd class="about__desc">Rodovias e ferrovias</dd>
+                <dt class="about__term">
+                  <span class="about__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 17h4l3-8 4 8 3-5h4" />
+                      <path d="M3 21h18" />
+                    </svg>
+                  </span>
+                  Foco
+                </dt>
+                <dd class="about__desc">Rodovias e ferrovias de grande porte</dd>
               </div>
               <div class="about__item">
-                <dt class="about__term">Atuação</dt>
-                <dd class="about__desc">Obras de infraestrutura</dd>
+                <dt class="about__term">
+                  <span class="about__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                      <path d="M9 9h6v6H9z" />
+                    </svg>
+                  </span>
+                  Atuação
+                </dt>
+                <dd class="about__desc">Obras e serviços de infraestrutura</dd>
               </div>
               <div class="about__item">
-                <dt class="about__term">Compromisso</dt>
-                <dd class="about__desc">Qualidade e segurança</dd>
+                <dt class="about__term">
+                  <span class="about__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </span>
+                  Compromisso
+                </dt>
+                <dd class="about__desc">Qualidade, prazo e segurança em campo</dd>
               </div>
               <div class="about__item">
-                <dt class="about__term">Relacionamento</dt>
+                <dt class="about__term">
+                  <span class="about__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </span>
+                  Relacionamento
+                </dt>
                 <dd class="about__desc">Parceria com clientes e projetistas</dd>
               </div>
             </dl>
+
+            <aside class="about-aside">
+              <h3 class="about-aside__title">Como trabalhamos</h3>
+              <ul class="about-aside__list">
+                <li>Planejamento integrado de frentes de obra e suprimentos</li>
+                <li>Controles técnicos alinhados a normas e ao contrato</li>
+                <li>Comunicação objetiva com equipes e contratantes</li>
+                <li>Responsabilidade socioambiental na operação</li>
+              </ul>
+            </aside>
           </div>
-          <a
-            class="scroll-cue"
-            href="#contato"
-            aria-label="Rolar até a seção Contato"
-          >
-            <span class="visually-hidden">Há mais conteúdo ao rolar a página.</span>
-            <span class="scroll-cue__rail" aria-hidden="true"></span>
-            <span class="scroll-cue__label">Continuar</span>
-            <span class="scroll-cue__arrow" aria-hidden="true"></span>
-          </a>
         </div>
       </section>
 
-      <section id="contato" class="section section--border">
-        <div class="container">
-          <div class="contact-box">
-            <div class="contact-box__text">
-              <h2 class="section__title">Vamos conversar sobre o seu projeto?</h2>
-              <p class="contact-box__lead">
-                Envie sua demanda para orçamento, esclarecimentos técnicos ou
-                parcerias. Ajuste e-mail, telefone e endereço abaixo com os dados
-                oficiais da empresa.
+      <section id="contato" class="section section--border section--contact">
+        <div class="container contact-wrap">
+          <header class="contact-head">
+            <p class="contact-head__eyebrow">Contato</p>
+            <h2 class="section__title">Vamos conversar sobre o seu projeto?</h2>
+            <p class="contact-head__lead">
+              Solicite orçamento, tire dúvidas técnicas ou fale sobre parcerias.
+              Substitua os dados abaixo pelos canais oficiais da Pavitek.
+            </p>
+          </header>
+
+          <div class="contact-layout">
+            <ul class="contact-tiles" role="list">
+              <li>
+                <a class="contact-tile" href="mailto:contato@pavitek.com.br">
+                  <span class="contact-tile__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <path d="m22 6-10 7L2 6" />
+                    </svg>
+                  </span>
+                  <span class="contact-tile__label">E-mail</span>
+                  <span class="contact-tile__value">contato@pavitek.com.br</span>
+                  <span class="contact-tile__hint">Clique para abrir o cliente de e-mail</span>
+                </a>
+              </li>
+              <li>
+                <a class="contact-tile" href="tel:+5500000000000">
+                  <span class="contact-tile__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </span>
+                  <span class="contact-tile__label">Telefone</span>
+                  <span class="contact-tile__value">+55 (00) 0000-0000</span>
+                  <span class="contact-tile__hint">Substitua pelo número comercial</span>
+                </a>
+              </li>
+              <li>
+                <div class="contact-tile contact-tile--static">
+                  <span class="contact-tile__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </span>
+                  <span class="contact-tile__label">Endereço</span>
+                  <p class="contact-tile__value contact-tile__value--multiline">
+                    Rua ou avenida, número — bairro<br />
+                    Cidade — UF, CEP 00000-000
+                  </p>
+                  <span class="contact-tile__hint">Atualize com o endereço da sede</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="contact-panel">
+              <p class="contact-panel__note">
+                <strong>Horário comercial:</strong> segunda a sexta, 8h às 18h
+                (ajuste conforme a operação).
               </p>
-            </div>
-            <div class="contact-box__links">
-              <a class="contact-link" href="mailto:contato@pavitek.com.br"
-                >contato@pavitek.com.br</a
-              >
-              <a class="contact-link" href="tel:+5500000000000"
-                >+55 (00) 0000-0000</a
-              >
+              <div class="contact-panel__actions">
+                <a class="btn btn--primary" href="mailto:contato@pavitek.com.br"
+                  >Enviar e-mail</a
+                >
+                <a class="btn btn--ghost" href="tel:+5500000000000">Ligar agora</a>
+              </div>
             </div>
           </div>
-          <a
-            class="scroll-cue"
-            href="#rodape"
-            aria-label="Rolar até o rodapé"
-          >
-            <span class="visually-hidden">Há mais conteúdo ao rolar a página.</span>
-            <span class="scroll-cue__rail" aria-hidden="true"></span>
-            <span class="scroll-cue__label">Continuar</span>
-            <span class="scroll-cue__arrow" aria-hidden="true"></span>
-          </a>
         </div>
       </section>
     </main>
