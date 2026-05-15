@@ -1,15 +1,70 @@
 :root {
+  color-scheme: dark;
   --bg: #020617;
   --bg-elevated: rgba(15, 23, 42, 0.5);
   --border: rgba(255, 255, 255, 0.1);
   --text: #f1f5f9;
   --text-muted: #94a3b8;
   --text-soft: #cbd5e1;
+  --heading: #ffffff;
+  --nav-muted: #cbd5e1;
+  --header-bg: rgba(2, 6, 23, 0.85);
+  --code-bg: rgba(255, 255, 255, 0.08);
   --accent: #f59e0b;
   --accent-hover: #fbbf24;
+  --btn-on-accent: #020617;
+  --btn-ghost-border: rgba(255, 255, 255, 0.2);
+  --btn-ghost-color: #ffffff;
+  --surface-card: rgba(15, 23, 42, 0.55);
+  --surface-card-hover: rgba(15, 23, 42, 0.75);
+  --surface-card-strong: rgba(15, 23, 42, 0.82);
+  --surface-ui: rgba(15, 23, 42, 0.88);
+  --panel-grad: linear-gradient(155deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.65));
+  --panel-grad-contact: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.75));
+  --hero-base: #020617;
+  --hero-scrim-a: rgb(2 6 23 / 0.45);
+  --hero-scrim-b: rgb(2 6 23 / 0.72);
+  --hero-scrim-c: rgb(2 6 23 / 0.88);
+  --pdf-btn-color: rgba(148, 163, 184, 0.75);
+  --pdf-btn-bg: rgba(15, 23, 42, 0.45);
+  --pdf-btn-border: rgba(148, 163, 184, 0.18);
+  --pdf-btn-bg-hover: rgba(15, 23, 42, 0.75);
+  --meta-theme-color: #020617;
   --max: 72rem;
   --header-h: 4rem;
   --section-screen-min: 100vh;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f1f5f9;
+  --bg-elevated: rgba(255, 255, 255, 0.88);
+  --border: rgba(15, 23, 42, 0.11);
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-soft: #475569;
+  --heading: #0f172a;
+  --nav-muted: #475569;
+  --header-bg: rgba(241, 245, 249, 0.9);
+  --code-bg: rgba(15, 23, 42, 0.06);
+  --btn-on-accent: #0f172a;
+  --btn-ghost-border: rgba(15, 23, 42, 0.16);
+  --btn-ghost-color: #0f172a;
+  --surface-card: rgba(255, 255, 255, 0.92);
+  --surface-card-hover: #ffffff;
+  --surface-card-strong: rgba(248, 250, 252, 0.98);
+  --surface-ui: rgba(248, 250, 252, 0.96);
+  --panel-grad: linear-gradient(155deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.85));
+  --panel-grad-contact: linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(226, 232, 240, 0.9));
+  --hero-base: #e2e8f0;
+  --hero-scrim-a: rgb(15 23 42 / 0.38);
+  --hero-scrim-b: rgb(15 23 42 / 0.52);
+  --hero-scrim-c: rgb(15 23 42 / 0.66);
+  --pdf-btn-color: rgba(71, 85, 105, 0.9);
+  --pdf-btn-bg: rgba(255, 255, 255, 0.72);
+  --pdf-btn-border: rgba(15, 23, 42, 0.1);
+  --pdf-btn-bg-hover: rgba(255, 255, 255, 0.96);
+  --meta-theme-color: #f1f5f9;
 }
 
 *,
@@ -74,7 +129,7 @@ a {
   inset: 0 0 auto 0;
   z-index: 50;
   border-bottom: 1px solid var(--border);
-  background: rgba(2, 6, 23, 0.85);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
 }
 
@@ -118,7 +173,7 @@ a {
   gap: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #cbd5e1;
+  color: var(--nav-muted);
 }
 
 @media (min-width: 640px) {
@@ -143,7 +198,7 @@ a {
 
 .btn--primary {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--btn-on-accent);
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
 }
@@ -166,8 +221,8 @@ a {
 }
 
 .btn--ghost {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  border: 1px solid var(--btn-ghost-border);
+  color: var(--btn-ghost-color);
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
 }
@@ -175,6 +230,73 @@ a {
 .btn--ghost:hover {
   border-color: rgba(245, 158, 11, 0.5);
   color: var(--accent-hover);
+}
+
+.header__actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+@media (min-width: 640px) {
+  .header__actions {
+    gap: 0.65rem;
+  }
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg-elevated);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: rgba(245, 158, 11, 0.35);
+  color: var(--accent-hover);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid rgba(245, 158, 11, 0.45);
+  outline-offset: 2px;
+}
+
+.theme-toggle__icon {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle__icon--moon {
+  display: block;
+}
+
+html[data-theme="light"] .theme-toggle__icon--sun {
+  display: none;
 }
 
 /* Layout: cada bloco principal com altura mínima de uma tela */
@@ -266,7 +388,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #020617;
+  background-color: var(--hero-base);
 }
 
 .hero__bg-img {
@@ -310,9 +432,9 @@ a {
   opacity: var(--hero-scrim-opacity, 1);
   background: linear-gradient(
     to bottom,
-    rgb(2 6 23 / 0.45) 0%,
-    rgb(2 6 23 / 0.72) 50%,
-    rgb(2 6 23 / 0.88) 100%
+    var(--hero-scrim-a) 0%,
+    var(--hero-scrim-b) 50%,
+    var(--hero-scrim-c) 100%
   );
 }
 
@@ -432,9 +554,9 @@ a {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.75);
-  background: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: var(--pdf-btn-color);
+  background: var(--pdf-btn-bg);
+  border: 1px solid var(--pdf-btn-border);
   border-radius: 0.35rem;
   padding: 0.3rem 0.55rem;
   cursor: pointer;
@@ -448,7 +570,7 @@ a {
 .services-pdf-btn:hover:not(:disabled) {
   color: rgba(251, 191, 36, 0.95);
   border-color: rgba(245, 158, 11, 0.35);
-  background: rgba(15, 23, 42, 0.75);
+  background: var(--pdf-btn-bg-hover);
 }
 
 .services-pdf-btn:focus-visible {
@@ -466,7 +588,7 @@ a {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--heading);
 }
 
 .section__subtitle {
@@ -480,7 +602,7 @@ a {
   font-size: 0.9em;
   padding: 0.1em 0.35em;
   border-radius: 0.25rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--code-bg);
   color: var(--text-soft);
 }
 
@@ -505,7 +627,7 @@ a {
 }
 
 .services__jump-sep {
-  color: #64748b;
+  color: var(--text-muted);
   user-select: none;
 }
 
@@ -528,7 +650,7 @@ a {
 }
 
 .services__state--loading {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .services__state--error {
@@ -568,7 +690,7 @@ a {
   margin: 0;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--heading);
   letter-spacing: -0.02em;
 }
 
@@ -682,7 +804,7 @@ a {
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 0.75rem;
   overflow: hidden;
-  background: rgba(15, 23, 42, 0.75);
+  background: var(--surface-card);
   cursor: zoom-in;
   transition:
     border-color 0.2s ease,
@@ -729,8 +851,8 @@ a {
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 0.5rem;
-  background: rgba(15, 23, 42, 0.88);
-  color: #fff;
+  background: var(--surface-ui);
+  color: var(--heading);
   font-size: 1.45rem;
   line-height: 1;
   font-family: inherit;
@@ -804,12 +926,12 @@ a {
 .service__path-hint {
   margin: 0.65rem 0 0;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .service__path-hint code {
   font-size: inherit;
-  color: #94a3b8;
+  color: var(--text-soft);
 }
 
 /* Lightbox */
@@ -963,7 +1085,7 @@ a {
   padding: 1.25rem 1.35rem;
   border-radius: 1rem;
   border: 1px solid var(--border);
-  background: rgba(15, 23, 42, 0.55);
+  background: var(--surface-card);
   box-shadow: 0 12px 40px -24px rgba(0, 0, 0, 0.5);
   transition:
     border-color 0.2s ease,
@@ -979,7 +1101,7 @@ a {
 
 .about__item:hover {
   border-color: rgba(245, 158, 11, 0.28);
-  background: rgba(15, 23, 42, 0.75);
+  background: var(--surface-card-hover);
   transform: translateY(-2px);
 }
 
@@ -1017,7 +1139,7 @@ a {
   padding: 1.5rem 1.5rem 1.6rem;
   border-radius: 1.25rem;
   border: 1px solid rgba(245, 158, 11, 0.18);
-  background: linear-gradient(155deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.65));
+  background: var(--panel-grad);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.04) inset,
     0 24px 48px -28px rgba(0, 0, 0, 0.55);
@@ -1035,7 +1157,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--heading);
 }
 
 .about-aside__list {
@@ -1166,7 +1288,7 @@ a {
   padding: 1.35rem 1.4rem;
   border-radius: 1rem;
   border: 1px solid var(--border);
-  background: rgba(15, 23, 42, 0.55);
+  background: var(--surface-card);
   color: inherit;
   text-decoration: none;
   transition:
@@ -1179,7 +1301,7 @@ a {
 
 .contact-tile:hover {
   border-color: rgba(245, 158, 11, 0.35);
-  background: rgba(15, 23, 42, 0.82);
+  background: var(--surface-card-strong);
   box-shadow:
     0 20px 44px -24px rgba(0, 0, 0, 0.65),
     0 0 0 1px rgba(245, 158, 11, 0.12);
@@ -1198,7 +1320,7 @@ a {
 .contact-tile--static:hover {
   transform: none;
   border-color: var(--border);
-  background: rgba(15, 23, 42, 0.55);
+  background: var(--surface-card);
   box-shadow: 0 14px 36px -22px rgba(0, 0, 0, 0.55);
 }
 
@@ -1228,7 +1350,7 @@ a {
   margin-top: 0.45rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--heading);
   word-break: break-word;
 }
 
@@ -1243,7 +1365,7 @@ a {
   margin-top: auto;
   padding-top: 1rem;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
@@ -1251,7 +1373,7 @@ a {
   padding: 1.5rem 1.5rem 1.65rem;
   border-radius: 1.25rem;
   border: 1px solid rgba(245, 158, 11, 0.22);
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.75));
+  background: var(--panel-grad-contact);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.04) inset,
     0 28px 56px -32px rgba(0, 0, 0, 0.6);
@@ -1289,6 +1411,18 @@ a {
   }
 }
 
+html[data-theme="light"] .section--about {
+  background:
+    radial-gradient(ellipse 120% 80% at 10% 20%, rgba(245, 158, 11, 0.06), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 90% 80%, rgba(59, 130, 246, 0.04), transparent 50%);
+}
+
+html[data-theme="light"] .section--contact {
+  background:
+    radial-gradient(ellipse 100% 70% at 85% 15%, rgba(245, 158, 11, 0.07), transparent 52%),
+    radial-gradient(ellipse 80% 50% at 15% 90%, rgba(148, 163, 184, 0.05), transparent 45%);
+}
+
 /* Footer */
 .footer {
   scroll-margin-top: 5rem;
@@ -1303,7 +1437,7 @@ a {
   gap: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 @media (min-width: 640px) {

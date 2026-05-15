@@ -1,4 +1,9 @@
 (function () {
+  if (globalThis.pavitekTheme) {
+    globalThis.pavitekTheme.initTheme();
+    globalThis.pavitekTheme.initThemeToggle("#theme-toggle");
+  }
+
   var ano = document.getElementById("ano");
   if (ano) {
     ano.textContent = String(new Date().getFullYear());

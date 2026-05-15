@@ -1,8 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="theme-color"
+      content="#020617"
+      id="theme-color-meta"
+    />
+    <script>
+      (function () {
+        var theme = "dark";
+        try {
+          var k = "pavitek-theme";
+          var s = localStorage.getItem(k);
+          if (s === "light" || s === "dark") {
+            theme = s;
+          } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            theme = "light";
+          }
+        } catch (e) {}
+        var d = document.documentElement;
+        d.setAttribute("data-theme", theme);
+        var meta = document.getElementById("theme-color-meta");
+        if (meta) {
+          meta.setAttribute("content", theme === "light" ? "#f1f5f9" : "#020617");
+        }
+      })();
+    </script>
     <meta
       name="description"
       content="Pavitek LTDA — construção de rodovias e ferrovias. Soluções em infraestrutura viária e ferroviária."
@@ -33,7 +58,42 @@
           <a href="#sobre">Sobre</a>
           <a href="#contato">Contato</a>
         </nav>
-        <a class="btn btn--primary btn--header" href="#contato">Fale conosco</a>
+        <div class="header__actions">
+          <button
+            type="button"
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Ativar tema claro"
+            title="Tema escuro"
+          >
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+            <svg
+              class="theme-toggle__icon theme-toggle__icon--moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+          <a class="btn btn--primary btn--header" href="#contato">Fale conosco</a>
+        </div>
       </div>
     </header>
 
@@ -313,6 +373,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1"></script>
     <script src="config/supabase.public.js"></script>
+    <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
     <script src="js/services-supabase.js"></script>
     <script src="js/services-pdf.js"></script>
