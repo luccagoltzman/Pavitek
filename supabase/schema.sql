@@ -68,12 +68,16 @@ execute function public.pavitek_set_updated_at();
 -- is_admin() — não usar user_metadata; só tabela admin_roles
 -- ---------------------------------------------------------------------------
 
+-- row_security = off: a leitura de admin_roles dentro da função não fica bloqueada
+-- por RLS (tabela sem políticas SELECT). Sem isto, is_admin() pode devolver sempre
+-- false em alguns ambientes e o insert em services falha com 42501.
 create or replace function public.is_admin()
 returns boolean
 language sql
 stable
 security definer
 set search_path = public
+set row_security = off
 as $$
   select exists (
     select 1
@@ -107,52 +111,100 @@ for select
 to anon, authenticated
 using (true);
 
--- Escrita apenas admin (autenticado + linha em admin_roles)
+-- Escrita apenas admin: EXISTS em admin_roles no contexto do utilizador (mais
+-- fiável do que só is_admin(), que depende de SECURITY DEFINER + versão PG).
 drop policy if exists "services_insert_admin" on public.services;
 create policy "services_insert_admin"
 on public.services
 for insert
 to authenticated
-with check (public.is_admin());
+with check (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "services_update_admin" on public.services;
 create policy "services_update_admin"
 on public.services
 for update
 to authenticated
-using (public.is_admin())
-with check (public.is_admin());
+using (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+)
+with check (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "services_delete_admin" on public.services;
 create policy "services_delete_admin"
 on public.services
 for delete
 to authenticated
-using (public.is_admin());
+using (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "service_images_insert_admin" on public.service_images;
 create policy "service_images_insert_admin"
 on public.service_images
 for insert
 to authenticated
-with check (public.is_admin());
+with check (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "service_images_update_admin" on public.service_images;
 create policy "service_images_update_admin"
 on public.service_images
 for update
 to authenticated
-using (public.is_admin())
-with check (public.is_admin());
+using (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+)
+with check (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "service_images_delete_admin" on public.service_images;
 create policy "service_images_delete_admin"
 on public.service_images
 for delete
 to authenticated
-using (public.is_admin());
+using (
+  auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
--- admin_roles: sem políticas → inacessível pela API (só SQL no dashboard)
+-- admin_roles: cada utilizador só vê a própria linha (útil para debug; a escrita
+-- continua só pelo SQL Editor / service_role).
+drop policy if exists "admin_roles_select_self" on public.admin_roles;
+create policy "admin_roles_select_self"
+on public.admin_roles
+for select
+to authenticated
+using (user_id = auth.uid());
 
 -- ---------------------------------------------------------------------------
 -- Grants
@@ -162,6 +214,7 @@ grant usage on schema public to anon, authenticated;
 
 grant select on public.services to anon, authenticated;
 grant select on public.service_images to anon, authenticated;
+grant select on public.admin_roles to authenticated;
 
 grant insert, update, delete on public.services to authenticated;
 grant insert, update, delete on public.service_images to authenticated;
@@ -188,22 +241,46 @@ create policy "service_images_admin_insert"
 on storage.objects
 for insert
 to authenticated
-with check (bucket_id = 'service-images' and public.is_admin());
+with check (
+  bucket_id = 'service-images'
+  and auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "service_images_admin_update" on storage.objects;
 create policy "service_images_admin_update"
 on storage.objects
 for update
 to authenticated
-using (bucket_id = 'service-images' and public.is_admin())
-with check (bucket_id = 'service-images' and public.is_admin());
+using (
+  bucket_id = 'service-images'
+  and auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+)
+with check (
+  bucket_id = 'service-images'
+  and auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 drop policy if exists "service_images_admin_delete" on storage.objects;
 create policy "service_images_admin_delete"
 on storage.objects
 for delete
 to authenticated
-using (bucket_id = 'service-images' and public.is_admin());
+using (
+  bucket_id = 'service-images'
+  and auth.uid() is not null
+  and exists (
+    select 1 from public.admin_roles r where r.user_id = auth.uid()
+  )
+);
 
 -- ---------------------------------------------------------------------------
 -- APÓS CRIAR O UTILIZADOR NO AUTH, descomente e substitua o UUID:

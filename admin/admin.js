@@ -233,7 +233,13 @@
       res = await client.from("services").insert(payload);
     }
     if (res.error) {
-      el.svcFormError.textContent = res.error.message;
+      var msg = res.error.message || String(res.error);
+      var code = res.error.code || "";
+      if (code === "42501" || /row-level security/i.test(msg)) {
+        msg +=
+          " — O seu utilizador precisa de permissão de administrador: em SQL Editor, insira o user_id em public.admin_roles (veja supabase/fix-42501-services-rls.sql) e volte a entrar no painel.";
+      }
+      el.svcFormError.textContent = msg;
       el.svcFormError.hidden = false;
       return;
     }
