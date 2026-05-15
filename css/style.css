@@ -491,6 +491,60 @@ a {
   max-width: 36rem;
 }
 
+.section__intro--servicos {
+  max-width: none;
+}
+
+.section__intro-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
+.section__intro-head .section__title {
+  flex: 1 1 auto;
+  min-width: min(100%, 12rem);
+}
+
+.services-pdf-btn {
+  flex-shrink: 0;
+  margin: 0.15rem 0 0;
+  font-family: inherit;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 0.35rem;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.services-pdf-btn:hover:not(:disabled) {
+  color: rgba(251, 191, 36, 0.95);
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.services-pdf-btn:focus-visible {
+  outline: 2px solid rgba(245, 158, 11, 0.45);
+  outline-offset: 2px;
+}
+
+.services-pdf-btn:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+
 .section__title {
   margin: 0;
   font-size: clamp(1.75rem, 3vw, 2.25rem);

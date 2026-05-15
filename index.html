@@ -102,8 +102,18 @@
 
       <section id="servicos" class="section section--border">
         <div class="container">
-          <header class="section__intro">
-            <h2 class="section__title">Serviços</h2>
+          <header class="section__intro section__intro--servicos">
+            <div class="section__intro-head">
+              <h2 class="section__title">Serviços</h2>
+              <button
+                type="button"
+                class="services-pdf-btn"
+                id="services-pdf-btn"
+                title="Descarregar catálogo em PDF (logo, textos e imagens)"
+              >
+                PDF
+              </button>
+            </div>
             <p class="section__subtitle">
               Os serviços abaixo são geridos no painel administrativo. As fotos são
               carregadas a partir do seu dispositivo e armazenadas no Supabase Storage.
@@ -241,9 +251,11 @@
       </button>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1"></script>
     <script src="config/supabase.public.js"></script>
     <script src="js/main.js"></script>
     <script src="js/services-supabase.js"></script>
+    <script src="js/services-pdf.js"></script>
   </body>
 </html>
