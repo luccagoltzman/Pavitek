@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pavitek LTDA — construção de rodovias e ferrovias. Soluções em infraestrutura viária e ferroviária."
+    />
+    <title>Pavitek LTDA | Rodovias e ferrovias</title>
+    <link rel="icon" type="image/jpeg" href="assets/pavitek.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner container">
+        <a href="#" class="logo">
+          <img
+            class="logo__img"
+            src="assets/pavitek.jpeg"
+            alt="Pavitek LTDA — construção de rodovias e ferrovias"
+            decoding="async"
+          />
+        </a>
+        <nav class="nav" aria-label="Principal">
+          <a href="#servicos">Serviços</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="btn btn--primary btn--header" href="#contato">Fale conosco</a>
+      </div>
+    </header>
+
+    <main>
+      <!--
+        Fundo do hero:
+        • Imagem: no <section> use style="--hero-bg-image: url('img/hero.jpg');"
+        • Vídeo: use class="hero hero--video" só depois de adicionar <source>; descomente o exemplo, preencha poster se quiser capa antes do play.
+        • Escurecimento da vinheta: style="--hero-scrim-opacity: 0.85;" (0 = transparente, 1 = forte)
+      -->
+      <section class="hero">
+        <div class="hero__media" aria-hidden="true">
+          <div class="hero__bg-image"></div>
+          <video
+            class="hero__bg-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster=""
+          >
+            <!-- Ex.: <source src="videos/hero.mp4" type="video/mp4" /> -->
+          </video>
+        </div>
+        <div class="hero__scrim" aria-hidden="true"></div>
+        <div class="hero__glow" aria-hidden="true"></div>
+        <div class="hero__line" aria-hidden="true"></div>
+        <div class="container hero__content">
+          <p class="hero__eyebrow">Infraestrutura de transporte</p>
+          <h1 class="hero__title">
+            Construção de rodovias e ferrovias com rigor técnico
+          </h1>
+          <p class="hero__lead">
+            A <strong>Pavitek LTDA</strong> executa obras de grande porte no
+            setor de infraestrutura, com foco em qualidade, prazo e segurança em
+            campo.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#servicos">Ver serviços</a>
+            <a class="btn btn--ghost" href="#contato">Solicitar proposta</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="section section--border">
+        <div class="container">
+          <header class="section__intro">
+            <h2 class="section__title">Serviços</h2>
+            <p class="section__subtitle">
+              Atuação em pavimentação, drenagem, recuperação local da pista e
+              piso intertravado. Cada serviço tem um <strong>carrossel de
+              fotos</strong> (setas e pontos). Coloque as imagens nas pastas
+              indicadas — por exemplo <code>01.jpg</code>, <code>02.jpg</code>
+              (ou <code>.png</code>; ajuste o nome no HTML se mudar a extensão).
+            </p>
+            <p class="services__jump">
+              <a href="#pavimentacao">Pavimentação</a>
+              <span class="services__jump-sep" aria-hidden="true">·</span>
+              <a href="#drenagem">Drenagem</a>
+              <span class="services__jump-sep" aria-hidden="true">·</span>
+              <a href="#tapa-buraco">Tapa buraco</a>
+              <span class="services__jump-sep" aria-hidden="true">·</span>
+              <a href="#piso-intercravado">Piso intercravado</a>
+            </p>
+          </header>
+
+          <div class="services">
+            <article class="service" id="pavimentacao">
+              <div class="service__head">
+                <h3 class="service__title">Pavimentação</h3>
+                <p class="service__text">
+                  Execução de camadas de rolamento, CBUQ, CCR e soluções
+                  correlatas, com controle de materiais, compactação e geometria
+                  conforme projeto e normas aplicáveis.
+                </p>
+              </div>
+              <div
+                class="carousel"
+                data-carousel
+                role="region"
+                aria-roledescription="Carrossel"
+                aria-label="Fotos do serviço Pavimentação"
+                style="--carousel-n: 4; --carousel-i: 0"
+              >
+                <div class="carousel__chrome">
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--prev"
+                    data-carousel-prev
+                    aria-label="Foto anterior"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel__viewport" tabindex="0">
+                    <div class="carousel__track" data-carousel-track>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Pavimentação, foto 1"
+                        >
+                          <img
+                            src="assets/servicos/pavimentacao/01.jpg"
+                            alt="Pavimentação — obra 1"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Pavimentação, foto 2"
+                        >
+                          <img
+                            src="assets/servicos/pavimentacao/02.jpg"
+                            alt="Pavimentação — obra 2"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Pavimentação, foto 3"
+                        >
+                          <img
+                            src="assets/servicos/pavimentacao/03.jpg"
+                            alt="Pavimentação — obra 3"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Pavimentação, foto 4"
+                        >
+                          <img
+                            src="assets/servicos/pavimentacao/04.jpg"
+                            alt="Pavimentação — obra 4"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--next"
+                    data-carousel-next
+                    aria-label="Próxima foto"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div
+                  class="carousel__dots"
+                  data-carousel-dots
+                  aria-label="Selecionar foto"
+                ></div>
+              </div>
+              <p class="service__path-hint" aria-hidden="true">
+                Pasta: <code>assets/servicos/pavimentacao/</code>
+              </p>
+            </article>
+
+            <article class="service" id="drenagem">
+              <div class="service__head">
+                <h3 class="service__title">Drenagem superficial e profunda</h3>
+                <p class="service__text">
+                  Sarjetas, bocas de lobo, tubulações, valas e dispositivos de
+                  escoamento para proteger a plataforma da via e obras
+                  complementares de drenagem em profundidade.
+                </p>
+              </div>
+              <div
+                class="carousel"
+                data-carousel
+                role="region"
+                aria-roledescription="Carrossel"
+                aria-label="Fotos do serviço Drenagem"
+                style="--carousel-n: 4; --carousel-i: 0"
+              >
+                <div class="carousel__chrome">
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--prev"
+                    data-carousel-prev
+                    aria-label="Foto anterior"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel__viewport" tabindex="0">
+                    <div class="carousel__track" data-carousel-track>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Drenagem, foto 1"
+                        >
+                          <img
+                            src="assets/servicos/drenagem/01.jpg"
+                            alt="Drenagem — obra 1"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Drenagem, foto 2"
+                        >
+                          <img
+                            src="assets/servicos/drenagem/02.jpg"
+                            alt="Drenagem — obra 2"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Drenagem, foto 3"
+                        >
+                          <img
+                            src="assets/servicos/drenagem/03.jpg"
+                            alt="Drenagem — obra 3"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Drenagem, foto 4"
+                        >
+                          <img
+                            src="assets/servicos/drenagem/04.jpg"
+                            alt="Drenagem — obra 4"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--next"
+                    data-carousel-next
+                    aria-label="Próxima foto"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div
+                  class="carousel__dots"
+                  data-carousel-dots
+                  aria-label="Selecionar foto"
+                ></div>
+              </div>
+              <p class="service__path-hint" aria-hidden="true">
+                Pasta: <code>assets/servicos/drenagem/</code>
+              </p>
+            </article>
+
+            <article class="service" id="tapa-buraco">
+              <div class="service__head">
+                <h3 class="service__title">Tapa buraco</h3>
+                <p class="service__text">
+                  Recuperação localizada de panelas e defeitos no pavimento,
+                  com materiais e métodos compatíveis com o tipo de via e a
+                  intensidade de tráfego.
+                </p>
+              </div>
+              <div
+                class="carousel"
+                data-carousel
+                role="region"
+                aria-roledescription="Carrossel"
+                aria-label="Fotos do serviço Tapa buraco"
+                style="--carousel-n: 4; --carousel-i: 0"
+              >
+                <div class="carousel__chrome">
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--prev"
+                    data-carousel-prev
+                    aria-label="Foto anterior"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel__viewport" tabindex="0">
+                    <div class="carousel__track" data-carousel-track>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Tapa buraco, foto 1"
+                        >
+                          <img
+                            src="assets/servicos/tapa-buraco/01.jpg"
+                            alt="Tapa buraco — serviço 1"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Tapa buraco, foto 2"
+                        >
+                          <img
+                            src="assets/servicos/tapa-buraco/02.jpg"
+                            alt="Tapa buraco — serviço 2"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Tapa buraco, foto 3"
+                        >
+                          <img
+                            src="assets/servicos/tapa-buraco/03.jpg"
+                            alt="Tapa buraco — serviço 3"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Tapa buraco, foto 4"
+                        >
+                          <img
+                            src="assets/servicos/tapa-buraco/04.jpg"
+                            alt="Tapa buraco — serviço 4"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--next"
+                    data-carousel-next
+                    aria-label="Próxima foto"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div
+                  class="carousel__dots"
+                  data-carousel-dots
+                  aria-label="Selecionar foto"
+                ></div>
+              </div>
+              <p class="service__path-hint" aria-hidden="true">
+                Pasta: <code>assets/servicos/tapa-buraco/</code>
+              </p>
+            </article>
+
+            <article class="service" id="piso-intercravado">
+              <div class="service__head">
+                <h3 class="service__title">Aplicação de piso intercravado</h3>
+                <p class="service__text">
+                  Assentamento de blocos intertravados para vias, pátios e áreas
+                  de circulação que exigem drenagem superficial e boa
+                  distribuição de cargas.
+                </p>
+              </div>
+              <div
+                class="carousel"
+                data-carousel
+                role="region"
+                aria-roledescription="Carrossel"
+                aria-label="Fotos do serviço Piso intercravado"
+                style="--carousel-n: 4; --carousel-i: 0"
+              >
+                <div class="carousel__chrome">
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--prev"
+                    data-carousel-prev
+                    aria-label="Foto anterior"
+                  >
+                    ‹
+                  </button>
+                  <div class="carousel__viewport" tabindex="0">
+                    <div class="carousel__track" data-carousel-track>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Piso intercravado, foto 1"
+                        >
+                          <img
+                            src="assets/servicos/piso-intercravado/01.jpg"
+                            alt="Piso intercravado — obra 1"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Piso intercravado, foto 2"
+                        >
+                          <img
+                            src="assets/servicos/piso-intercravado/02.jpg"
+                            alt="Piso intercravado — obra 2"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Piso intercravado, foto 3"
+                        >
+                          <img
+                            src="assets/servicos/piso-intercravado/03.jpg"
+                            alt="Piso intercravado — obra 3"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                      <figure class="carousel__slide">
+                        <button
+                          type="button"
+                          class="carousel__open"
+                          data-lightbox-open
+                          aria-label="Ampliar: Piso intercravado, foto 4"
+                        >
+                          <img
+                            src="assets/servicos/piso-intercravado/04.jpg"
+                            alt="Piso intercravado — obra 4"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </figure>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="carousel__arrow carousel__arrow--next"
+                    data-carousel-next
+                    aria-label="Próxima foto"
+                  >
+                    ›
+                  </button>
+                </div>
+                <div
+                  class="carousel__dots"
+                  data-carousel-dots
+                  aria-label="Selecionar foto"
+                ></div>
+              </div>
+              <p class="service__path-hint" aria-hidden="true">
+                Pasta: <code>assets/servicos/piso-intercravado/</code>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="section section--border">
+        <div class="container about">
+          <div class="about__text">
+            <h2 class="section__title">Sobre a Pavitek</h2>
+            <p class="about__lead">
+              Atuamos na construção e conservação de vias e ferrovias, com
+              equipes preparadas para desafios de logística, geotecnia e
+              integração com o meio ambiente. Nosso objetivo é entregar obras
+              seguras, duráveis e alinhadas às especificações do projeto e às
+              normas aplicáveis.
+            </p>
+          </div>
+          <dl class="about__grid">
+            <div class="about__item">
+              <dt class="about__term">Foco</dt>
+              <dd class="about__desc">Rodovias e ferrovias</dd>
+            </div>
+            <div class="about__item">
+              <dt class="about__term">Atuação</dt>
+              <dd class="about__desc">Obras de infraestrutura</dd>
+            </div>
+            <div class="about__item">
+              <dt class="about__term">Compromisso</dt>
+              <dd class="about__desc">Qualidade e segurança</dd>
+            </div>
+            <div class="about__item">
+              <dt class="about__term">Relacionamento</dt>
+              <dd class="about__desc">Parceria com clientes e projetistas</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="contato" class="section section--border">
+        <div class="container">
+          <div class="contact-box">
+            <div class="contact-box__text">
+              <h2 class="section__title">Vamos conversar sobre o seu projeto?</h2>
+              <p class="contact-box__lead">
+                Envie sua demanda para orçamento, esclarecimentos técnicos ou
+                parcerias. Ajuste e-mail, telefone e endereço abaixo com os dados
+                oficiais da empresa.
+              </p>
+            </div>
+            <div class="contact-box__links">
+              <a class="contact-link" href="mailto:contato@pavitek.com.br"
+                >contato@pavitek.com.br</a
+              >
+              <a class="contact-link" href="tel:+5500000000000"
+                >+55 (00) 0000-0000</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>© <span id="ano"></span> Pavitek LTDA. Todos os direitos reservados.</p>
+        <p class="footer__note">
+          Construção de rodovias e ferrovias — CNPJ e endereço comercial podem ser
+          incluídos aqui.
+        </p>
+      </div>
+    </footer>
+
+    <div
+      id="lightbox"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Foto ampliada"
+      hidden
+    >
+      <div class="lightbox__backdrop" data-lightbox-close tabindex="-1"></div>
+      <img class="lightbox__img" src="" alt="" decoding="async" />
+      <button type="button" class="lightbox__close" data-lightbox-close aria-label="Fechar">
+        Fechar
+      </button>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
