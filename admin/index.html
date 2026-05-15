@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel — Pavitek</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="admin-header__inner">
+        <h1 class="admin-header__title">Pavitek · Painel</h1>
+        <div id="auth-zone" class="admin-header__auth"></div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div id="login-panel" class="panel panel--narrow">
+        <h2 class="panel__title">Entrar</h2>
+        <p class="panel__hint">
+          Utilize o e-mail e a palavra-passe do utilizador criado no Supabase
+          Auth. Esse utilizador tem de constar em
+          <code>public.admin_roles</code>.
+        </p>
+        <form id="form-login" class="form">
+          <label class="form__label">
+            E-mail
+            <input
+              class="form__input"
+              type="email"
+              name="email"
+              autocomplete="username"
+              required
+            />
+          </label>
+          <label class="form__label">
+            Palavra-passe
+            <input
+              class="form__input"
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <p id="login-error" class="form__error" role="alert" hidden></p>
+          <button class="btn btn--primary" type="submit">Entrar</button>
+        </form>
+      </div>
+
+      <div id="app-panel" class="panel" hidden>
+        <div class="toolbar">
+          <button type="button" class="btn btn--primary" id="btn-new-service">
+            Novo serviço
+          </button>
+        </div>
+        <div id="services-table-wrap" class="table-wrap"></div>
+      </div>
+
+      <div id="config-error" class="panel panel--error" hidden>
+        <h2 class="panel__title">Configuração em falta</h2>
+        <p>
+          Copie <code>config/supabase.public.example.js</code> para
+          <code>config/supabase.public.js</code> na raiz do projecto e preencha a
+          chave <strong>anon</strong> (Settings → API).
+        </p>
+      </div>
+    </main>
+
+    <dialog id="dlg-service" class="modal">
+      <form id="form-service" class="form">
+        <h2 class="modal__title" id="dlg-service-title">Serviço</h2>
+        <input type="hidden" name="id" id="svc-id" />
+        <label class="form__label">
+          Título
+          <input class="form__input" type="text" name="title" id="svc-title" required />
+        </label>
+        <label class="form__label">
+          Identificador na página (slug)
+          <span class="form__sublabel"
+            >Texto curto para o atalho interno (#…). Não coloque aqui links de
+            fotografias.</span
+          >
+          <input class="form__input" type="text" name="slug" id="svc-slug" required />
+        </label>
+        <label class="form__label">
+          Ordem
+          <input class="form__input" type="number" name="sort_order" id="svc-order" value="0" />
+        </label>
+        <label class="form__label">
+          Descrição
+          <textarea
+            class="form__input form__textarea"
+            name="description"
+            id="svc-desc"
+            rows="5"
+            required
+          ></textarea>
+        </label>
+        <p id="svc-form-error" class="form__error" role="alert" hidden></p>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn--primary">Guardar</button>
+          <button type="button" class="btn btn--ghost" id="svc-cancel">Cancelar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="dlg-images" class="modal modal--wide">
+      <div class="modal__head">
+        <h2 class="modal__title" id="dlg-images-title">Imagens</h2>
+        <button type="button" class="btn btn--ghost" id="btn-close-images">Fechar</button>
+      </div>
+      <input type="hidden" id="img-service-id" />
+      <p class="img-upload-intro">
+        As fotografias vêm <strong>do seu computador ou telemóvel</strong>. Escolha
+        ficheiros (JPG, PNG, WebP…). Não é preciso — nem deve — colar endereços da
+        internet.
+      </p>
+      <ul id="img-list" class="img-list"></ul>
+      <div class="file-upload">
+        <input
+          type="file"
+          id="img-files"
+          accept="image/*"
+          multiple
+          class="file-upload__input"
+          aria-label="Escolher imagens no dispositivo"
+        />
+        <button type="button" class="btn btn--primary" id="img-files-trigger">
+          Escolher ficheiros no dispositivo
+        </button>
+      </div>
+      <p id="img-status" class="form__hint"></p>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1"></script>
+    <script src="../config/supabase.public.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
